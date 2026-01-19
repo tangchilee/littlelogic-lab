@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>LittleLogic-Lab | 探索學習中心</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入思源宋體 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-outer: #FFFAF5; 
+            --text-primary: #451a03;
+            --shadow-soft: rgba(146, 64, 14, 0.05);
+            --amber-border: #FBBF24; 
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-outer);
+            color: var(--text-primary);
+            -webkit-font-smoothing: antialiased;
+            padding: 0.5rem; 
+        }
+
+        @media (min-width: 768px) {
+            body { padding: 2rem; }
+        }
+
+        .serif { font-family: 'Noto Serif TC', serif; }
+
+        /* 大盒子容器：黃色圍邊與白色底圖 */
+        .main-wrapper {
+            background-color: #FFFFFF; 
+            border: 4px solid var(--amber-border); 
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(146, 64, 14, 0.08);
+            margin: 0 auto; 
+            padding: 0.5rem 0.2rem 1rem 0.2rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        @media (min-width: 768px) {
+            .main-wrapper {
+                padding: 2rem;
+                border-width: 8px; 
+                border-radius: 64px;
+            }
+        }
+
+        /* 主題收納托盤 */
+        .category-box {
+            border-radius: 16px;
+            padding: 0.3rem; 
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        @media (min-width: 768px) {
+            .category-box {
+                padding: 1.5rem;
+                border-radius: 32px;
+            }
+        }
+
+        /* 卡片方塊：極限緊湊化 4 欄模式 */
+        .card-box {
+            background: #FFFFFF;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            box-shadow: 0 2px 4px var(--shadow-soft);
+            padding: 0.35rem 0.15rem; 
+            gap: 3px;
+            transition: all 0.3s ease;
+        }
+
+        @media (min-width: 768px) {
+            .card-box { 
+                border-radius: 24px; 
+                padding: 1.5rem 1rem;
+                gap: 1rem;
+                border-width: 2px;
+            }
+        }
+
+        /* 標題文字：強制一行 */
+        .item-title {
+            line-height: 1;
+            text-align: center;
+            width: 100%;
+            white-space: nowrap; 
+            overflow: hidden;
+            text-overflow: clip;
+            font-size: 7.2px; 
+            font-weight: 900;
+            color: #451a03;
+        }
+
+        @media (min-width: 768px) {
+            .item-title { font-size: 1.25rem; }
+        }
+
+        /* 按鈕樣式 */
+        .card-btn {
+            color: #FFFFFF;
+            font-weight: 700;
+            border-radius: 3px;
+            text-align: center;
+            width: 90%;
+            font-size: 7px;
+            padding: 1.5px 0;
+            line-height: 1.1;
+        }
+
+        @media (min-width: 768px) {
+            .card-btn { 
+                border-radius: 10px; 
+                font-size: 1rem;
+                padding: 0.6rem 0;
+                width: 100%;
+            }
+        }
+
+        .btn-amber { background: #FBBF24; box-shadow: 0 1px 0px #D97706; }
+        .btn-emerald { background: #34D399; box-shadow: 0 1px 0px #059669; }
+        .btn-blue { background: #60A5FA; box-shadow: 0 1px 0px #2563EB; }
+
+        .card-btn.coming-soon {
+            background: #F3F4F6;
+            color: #9CA3AF;
+            box-shadow: 0 1px 0px #D1D5DB;
+        }
+
+        /* 佔位符樣式 */
+        .card-placeholder {
+            background: rgba(0, 0, 0, 0.01);
+            border: 1px dashed rgba(0, 0, 0, 0.06);
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <div class="main-wrapper">
+        
+        <!-- 頁頭 -->
+        <header class="max-w-4xl mx-auto px-4 pt-0 pb-3 text-center flex flex-col items-center">
+            <!-- 標籤 -->
+            <div class="inline-flex items-center gap-1.5 px-3 py-0.5 bg-orange-100 text-[#ff8c42] rounded-full text-[9px] font-black tracking-widest mb-1.5 shadow-sm uppercase">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L12 3Z"/>
+                </svg>
+                教學輔助工具
+            </div>
+
+            <h1 class="serif text-xl sm:text-5xl font-[900] text-orange-950 tracking-[0.05em] mb-1 uppercase leading-none">
+                探索學習中心
+            </h1>
+
+            <div class="flex items-center justify-center space-x-2 opacity-10 my-1.5">
+                <span class="h-px w-4 md:w-12 bg-amber-900"></span>
+                <p class="text-[7px] md:text-[9px] tracking-[0.3em] font-bold uppercase text-amber-900">LittleLogic-Lab</p>
+                <span class="h-px w-4 md:w-12 bg-amber-900"></span>
+            </div>
+
+            <p class="text-[#433422]/60 font-normal text-[8px] sm:text-[14px] mb-1 uppercase text-center tracking-tight px-2 max-w-2xl">
+                整合專注力、語文與數理邏輯，在趣味遊戲中啟發學習潛能
+            </p>
+        </header>
+
+        <main class="max-w-5xl mx-auto px-1 md:px-8 space-y-4 md:space-y-10">
+
+            <!-- 類別一：專注力培訓 -->
+            <section>
+                <div class="flex items-center mb-1.5 md:mb-6 px-1">
+                    <div class="w-0.5 h-3 md:w-1.5 md:h-8 bg-amber-400 rounded-full mr-1.5"></div>
+                    <h2 class="serif text-xs md:text-3xl font-bold text-orange-950">專注力培訓</h2>
+                </div>
+                
+                <div class="category-box" style="background: rgba(254, 243, 199, 0.2); border-color: rgba(251, 191, 36, 0.15);">
+                    <div class="grid grid-cols-4 gap-1 md:gap-6">
+                        <a href="https://concentration-worksheet.vercel.app/" target="_blank" class="group block">
+                            <div class="card-box">
+                                <div class="w-4 h-4 md:w-16 md:h-16 text-amber-500/80">
+                                    <svg viewBox="0 0 24 24" class="w-full h-full fill-none" stroke="currentColor" stroke-width="2.5">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                        <text x="11" y="14.5" font-family="Arial Black" font-size="10" fill="currentColor" text-anchor="middle" stroke="none">6</text>
+                                    </svg>
+                                </div>
+                                <h3 class="serif item-title">數字躲貓貓</h3>
+                                <div class="card-btn btn-amber">開始</div>
+                            </div>
+                        </a>
+                        <a href="https://focus-matrix-beta.vercel.app/" target="_blank" class="group block">
+                            <div class="card-box">
+                                <div class="w-4 h-4 md:w-16 md:h-16 text-amber-500/80">
+                                    <svg viewBox="0 0 24 24" class="w-full h-full fill-none" stroke="currentColor" stroke-width="2.5">
+                                        <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <path d="M7 9l2 3-2 3M17 9l-2 3 2 3" opacity="0.6"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="serif item-title">鏡像小精靈</h3>
+                                <div class="card-btn btn-amber">挑戰</div>
+                            </div>
+                        </a>
+                        <a href="https://grid-focus.vercel.app/" target="_blank" class="group block">
+                            <div class="card-box">
+                                <div class="w-4 h-4 md:w-16 md:h-16 text-amber-500/80">
+                                    <svg viewBox="0 0 24 24" class="w-full h-full fill-none" stroke="currentColor" stroke-width="2.5">
+                                        <path d="M3 3v18h18"></path>
+                                        <rect x="7" y="7" width="10" height="10" rx="1" opacity="0.4"></rect>
+                                        <circle cx="12" cy="12" r="2" fill="currentColor"></circle>
+                                    </svg>
+                                </div>
+                                <h3 class="serif item-title">座標疊疊樂</h3>
+                                <div class="card-btn btn-amber">尋寶</div>
+                            </div>
+                        </a>
+                        <div class="card-box card-placeholder">
+                            <div class="w-4 h-4 md:w-16 md:h-16 opacity-10">
+                                <svg viewBox="0 0 24 24" class="w-full h-full fill-none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-dasharray="4 4"></circle></svg>
+                            </div>
+                            <h3 class="serif item-title opacity-20">(準備中)</h3>
+                            <div class="card-btn coming-soon">期待</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 類別二：語文啟蒙 -->
+            <section>
+                <div class="flex items-center mb-1.5 md:mb-6 px-1">
+                    <div class="w-0.5 h-3 md:w-1.5 md:h-8 bg-emerald-400 rounded-full mr-1.5"></div>
+                    <h2 class="serif text-xs md:text-3xl font-bold text-emerald-950">語文啟蒙</h2>
+                </div>
+                <div class="category-box" style="background: rgba(209, 250, 229, 0.15); border-color: rgba(52, 211, 153, 0.15);">
+                    <div class="grid grid-cols-4 gap-1 md:gap-8">
+                        <a href="https://zhuyin-generator.vercel.app/" target="_blank" class="group block">
+                            <div class="card-box">
+                                <div class="w-4 h-4 md:w-16 md:h-16 text-emerald-500/80">
+                                    <svg viewBox="0 0 24 24" class="w-full h-full fill-none" stroke="currentColor" stroke-width="2.5">
+                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                        <text x="12" y="13" font-family="Arial Black" font-size="8.5" fill="currentColor" text-anchor="middle" stroke="none">ㄅ</text>
+                                    </svg>
+                                </div>
+                                <h3 class="serif item-title">注音造詞趣</h3>
+                                <div class="card-btn btn-emerald">開始</div>
+                            </div>
+                        </a>
+                        <div class="card-box card-placeholder">
+                            <div class="w-4 h-4 md:w-16 md:h-16 opacity-10">
+                                <svg viewBox="0 0 24 24" class="w-full h-full fill-none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-dasharray="4 4"></circle></svg>
+                            </div>
+                            <h3 class="serif item-title opacity-20">(準備中)</h3>
+                            <div class="card-btn coming-soon">期待</div>
+                        </div>
+                        <div class="card-box card-placeholder">
+                            <div class="w-4 h-4 md:w-16 md:h-16 opacity-10">
+                                <svg viewBox="0 0 24 24" class="w-full h-full fill-none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-dasharray="4 4"></circle></svg>
+                            </div>
+                            <h3 class="serif item-title opacity-20">(準備中)</h3>
+                            <div class="card-btn coming-soon">期待</div>
+                        </div>
+                        <div class="card-box card-placeholder">
+                            <div class="w-4 h-4 md:w-16 md:h-16 opacity-10">
+                                <svg viewBox="0 0 24 24" class="w-full h-full fill-none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-dasharray="4 4"></circle></svg>
+                            </div>
+                            <h3 class="serif item-title opacity-20">(準備中)</h3>
+                            <div class="card-btn coming-soon">期待</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 類別三：數理邏輯 -->
+            <section>
+                <div class="flex items-center mb-1.5 md:mb-6 px-1">
+                    <div class="w-0.5 h-3 md:w-1.5 md:h-8 bg-blue-400 rounded-full mr-1.5"></div>
+                    <h2 class="serif text-xs md:text-3xl font-bold text-blue-950">數理邏輯</h2>
+                </div>
+                <div class="category-box" style="background: rgba(219, 234, 254, 0.15); border-color: rgba(96, 165, 250, 0.15);">
+                    <div class="grid grid-cols-4 gap-1 md:gap-8">
+                        <div class="card-box card-placeholder">
+                            <div class="w-4 h-4 md:w-16 md:h-16 opacity-10">
+                                <svg viewBox="0 0 24 24" class="w-full h-full fill-none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-dasharray="4 4"></circle></svg>
+                            </div>
+                            <h3 class="serif item-title opacity-20">(準備中)</h3>
+                            <div class="card-btn coming-soon">期待</div>
+                        </div>
+                        <div class="card-box card-placeholder">
+                            <div class="w-4 h-4 md:w-16 md:h-16 opacity-10">
+                                <svg viewBox="0 0 24 24" class="w-full h-full fill-none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-dasharray="4 4"></circle></svg>
+                            </div>
+                            <h3 class="serif item-title opacity-20">(準備中)</h3>
+                            <div class="card-btn coming-soon">期待</div>
+                        </div>
+                        <div class="card-box card-placeholder">
+                            <div class="w-4 h-4 md:w-16 md:h-16 opacity-10">
+                                <svg viewBox="0 0 24 24" class="w-full h-full fill-none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-dasharray="4 4"></circle></svg>
+                            </div>
+                            <h3 class="serif item-title opacity-20">(準備中)</h3>
+                            <div class="card-btn coming-soon">期待</div>
+                        </div>
+                        <div class="card-box card-placeholder">
+                            <div class="w-4 h-4 md:w-16 md:h-16 opacity-10">
+                                <svg viewBox="0 0 24 24" class="w-full h-full fill-none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-dasharray="4 4"></circle></svg>
+                            </div>
+                            <h3 class="serif item-title opacity-20">(準備中)</h3>
+                            <div class="card-btn coming-soon">期待</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="mt-8 pb-4 text-center opacity-30 px-6">
+            <p class="serif text-[7px] md:text-xs tracking-[0.2em] font-bold uppercase">LittleLogic-Lab System</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
