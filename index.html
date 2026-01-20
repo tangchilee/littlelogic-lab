@@ -63,7 +63,7 @@
             }
         }
 
-        /* 卡片方塊：調整為直式比例 */
+        /* 卡片方塊：直式比例 */
         .card-box {
             background: #FFFFFF;
             border-radius: 8px;
@@ -74,19 +74,19 @@
             justify-content: space-between; 
             width: 100%;
             box-shadow: 0 2px 4px var(--shadow-soft);
-            padding: 0.65rem 0.1rem; 
-            min-height: 90px;
-            gap: 3px; 
+            padding: 0.8rem 0.1rem; 
+            min-height: 140px; 
+            gap: 4px; 
             transition: all 0.3s ease;
         }
 
         @media (min-width: 768px) {
             .card-box { 
                 border-radius: 20px; 
-                padding: 1.5rem 0.5rem; 
+                padding: 2rem 0.5rem; 
                 border-width: 2px;
                 gap: 12px;
-                min-height: 220px;
+                min-height: 280px;
             }
             .card-box:hover:not(.card-placeholder) {
                 transform: translateY(-4px);
@@ -94,48 +94,49 @@
             }
         }
 
-        /* 標題文字：絕對不換行 */
+        /* 標題文字：維持加大 */
         .item-title {
-            line-height: 1;
+            line-height: 1.1;
             text-align: center;
             width: 100%;
             white-space: nowrap; 
-            font-size: 7px; 
+            font-size: 10px; 
             font-weight: 900;
             margin: 1px 0;
+            letter-spacing: -0.01em;
         }
 
         @media (min-width: 768px) {
             .item-title { 
-                font-size: clamp(13px, 1.6vw, 1.15rem); 
+                font-size: clamp(14px, 1.8vw, 1.35rem); 
                 margin: 4px 0;
             }
         }
 
-        /* 按鈕優化 */
+        /* 按鈕優化：維持增高厚度 */
         .card-btn {
             color: #FFFFFF;
             font-weight: 700;
-            border-radius: 3px;
+            border-radius: 4px;
             text-align: center;
             width: 85%;
-            font-size: 7px;
-            padding: 1.5px 0;
+            font-size: 8.5px;
+            padding: 7px 0; 
             line-height: 1;
         }
 
         @media (min-width: 768px) {
             .card-btn { 
-                border-radius: 8px; 
-                font-size: clamp(11px, 1.3vw, 0.95rem);
-                padding: 0.4rem 0;
+                border-radius: 10px; 
+                font-size: clamp(12px, 1.4vw, 1.1rem);
+                padding: 1rem 0;
                 width: 90%;
             }
         }
 
-        .btn-amber { background: #FBBF24; box-shadow: 0 1px 0px #D97706; }
-        .btn-emerald { background: #34D399; box-shadow: 0 1px 0px #059669; }
-        .btn-blue { background: #60A5FA; box-shadow: 0 1px 0px #2563EB; }
+        .btn-amber { background: #FBBF24; box-shadow: 0 1.5px 0px #D97706; }
+        .btn-emerald { background: #34D399; box-shadow: 0 1.5px 0px #059669; }
+        .btn-blue { background: #60A5FA; box-shadow: 0 1.5px 0px #2563EB; }
 
         .card-btn.coming-soon {
             background: #F3F4F6;
@@ -149,36 +150,47 @@
             border: 1px dashed rgba(0, 0, 0, 0.05);
             box-shadow: none;
         }
+
+        /* 圖案容器：維持等比例放大且不變形 */
+        .icon-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            aspect-ratio: 1 / 1;
+        }
     </style>
 </head>
 <body>
 
     <div class="main-wrapper">
         
-        <!-- 頁頭 -->
-        <header class="max-w-4xl mx-auto px-4 pt-0 pb-3 text-center flex flex-col items-center">
-            <!-- 標籤 -->
-            <div class="inline-flex items-center gap-1.5 px-3 py-0.5 bg-orange-100 text-[#ff8c42] rounded-full text-[9px] font-black tracking-widest mb-1.5 shadow-sm uppercase">
+        <!-- 頁頭：調整 gap 佈局，實現三元素等距且降低高度 -->
+        <header class="max-w-4xl mx-auto px-4 pt-0 pb-3 text-center flex flex-col items-center gap-1.5 md:gap-3">
+            
+            <!-- 1. 教學輔助工具標籤 -->
+            <div class="inline-flex items-center gap-1.5 px-3 py-0.5 bg-orange-100 text-[#ff8c42] rounded-full text-[9px] font-black tracking-widest shadow-sm uppercase">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                     <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L12 3Z"/>
                 </svg>
                 教學輔助工具
             </div>
 
-            <!-- 主標題 -->
-            <h1 class="serif text-2xl sm:text-5xl font-[900] text-orange-950 tracking-[0.05em] mb-3 md:mb-5 uppercase leading-none">
+            <!-- 2. 探索學習中心主標題 -->
+            <h1 class="serif text-2xl sm:text-5xl font-[900] text-orange-950 tracking-[0.05em] uppercase leading-none">
                 探索學習中心
             </h1>
 
-            <p class="text-[#433422]/70 font-normal text-[8px] sm:text-[14px] mb-1 uppercase text-center tracking-wide px-2 max-w-2xl leading-tight">
+            <!-- 3. 下方描述字句 -->
+            <p class="text-[#433422]/70 font-normal text-[8px] sm:text-[14px] uppercase text-center tracking-wide px-2 max-w-2xl leading-tight">
                 整合專注力、語文與數理邏輯，在趣味遊戲中啟發學習潛能
             </p>
         </header>
 
         <main class="max-w-5xl mx-auto px-1 md:px-4">
             
-            <!-- 新增的橘色分隔線 -->
-            <div class="w-full h-px bg-orange-100/80 mb-6 md:mb-12 mt-2"></div>
+            <!-- 橘色分隔線 -->
+            <div class="w-full h-px bg-orange-100/80 mb-6 md:mb-12 mt-1"></div>
 
             <!-- 類別一：專注力培訓 -->
             <section class="space-y-4 md:space-y-10">
@@ -192,7 +204,8 @@
                         <div class="grid grid-cols-4 gap-1 md:gap-6">
                             <a href="https://concentration-worksheet.vercel.app/" target="_blank" class="group block">
                                 <div class="card-box">
-                                    <div class="w-4 h-4 md:w-16 md:h-16 text-amber-500/80">
+                                    <!-- 修復放大鏡手柄：cy 改回 y1="21" -->
+                                    <div class="icon-container w-10 h-10 md:w-20 md:h-20 text-amber-500/80">
                                         <svg viewBox="0 0 24 24" class="w-full h-full fill-none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                             <circle cx="11" cy="11" r="8"></circle>
                                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -205,7 +218,7 @@
                             </a>
                             <a href="https://focus-matrix-beta.vercel.app/" target="_blank" class="group block">
                                 <div class="card-box">
-                                    <div class="w-4 h-4 md:w-16 md:h-16 text-amber-500/80">
+                                    <div class="icon-container w-10 h-10 md:w-20 md:h-20 text-amber-500/80">
                                         <svg viewBox="0 0 24 24" class="w-full h-full fill-none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                             <rect x="3" y="5" width="18" height="14" rx="2"></rect>
                                             <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -218,7 +231,7 @@
                             </a>
                             <a href="https://grid-focus.vercel.app/" target="_blank" class="group block">
                                 <div class="card-box">
-                                    <div class="w-4 h-4 md:w-16 md:h-16 text-amber-500/80">
+                                    <div class="icon-container w-10 h-10 md:w-20 md:h-20 text-amber-500/80">
                                         <svg viewBox="0 0 24 24" class="w-full h-full fill-none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                             <path d="M3 3v18h18"></path>
                                             <rect x="7" y="7" width="10" height="10" rx="1" opacity="0.4"></rect>
@@ -230,7 +243,7 @@
                                 </div>
                             </a>
                             <div class="card-box card-placeholder">
-                                <div class="w-4 h-4 md:w-16 md:h-16 opacity-10">
+                                <div class="icon-container w-10 h-10 md:w-16 md:h-16 opacity-10">
                                     <svg viewBox="0 0 24 24" class="w-full h-full fill-none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-dasharray="4 4"></circle></svg>
                                 </div>
                                 <h3 class="serif item-title opacity-20">(準備中)</h3>
@@ -250,7 +263,7 @@
                         <div class="grid grid-cols-4 gap-1.5 md:gap-6">
                             <a href="https://zhuyin-generator.vercel.app/" target="_blank" class="group block">
                                 <div class="card-box">
-                                    <div class="w-4 h-4 md:w-16 md:h-16 text-emerald-500/80">
+                                    <div class="icon-container w-10 h-10 md:w-20 md:h-20 text-emerald-500/80">
                                         <svg viewBox="0 0 24 24" class="w-full h-full fill-none" stroke="currentColor" stroke-width="2.5">
                                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                                             <text x="12" y="13.5" font-family="Arial Black" font-size="8.5" fill="currentColor" text-anchor="middle" stroke="none">ㄅ</text>
@@ -261,21 +274,21 @@
                                 </div>
                             </a>
                             <div class="card-box card-placeholder">
-                                <div class="w-4 h-4 md:w-16 md:h-16 opacity-10">
+                                <div class="icon-container w-10 h-10 md:w-16 md:h-16 opacity-10">
                                     <svg viewBox="0 0 24 24" class="w-full h-full fill-none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-dasharray="4 4"></circle></svg>
                                 </div>
                                 <h3 class="serif item-title opacity-20">(準備中)</h3>
                                 <div class="card-btn coming-soon">期待</div>
                             </div>
                             <div class="card-box card-placeholder">
-                                <div class="w-4 h-4 md:w-16 md:h-16 opacity-10">
+                                <div class="icon-container w-10 h-10 md:w-16 md:h-16 opacity-10">
                                     <svg viewBox="0 0 24 24" class="w-full h-full fill-none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-dasharray="4 4"></circle></svg>
                                 </div>
                                 <h3 class="serif item-title opacity-20">(準備中)</h3>
                                 <div class="card-btn coming-soon">期待</div>
                             </div>
                             <div class="card-box card-placeholder">
-                                <div class="w-4 h-4 md:w-16 md:h-16 opacity-10">
+                                <div class="icon-container w-10 h-10 md:w-16 md:h-16 opacity-10">
                                     <svg viewBox="0 0 24 24" class="w-full h-full fill-none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-dasharray="4 4"></circle></svg>
                                 </div>
                                 <h3 class="serif item-title opacity-20">(準備中)</h3>
@@ -294,28 +307,28 @@
                     <div class="category-box" style="background: rgba(219, 234, 254, 0.15); border-color: rgba(96, 165, 250, 0.1);">
                         <div class="grid grid-cols-4 gap-1.5 md:gap-6">
                             <div class="card-box card-placeholder">
-                                <div class="w-4 h-4 md:w-16 md:h-16 opacity-10">
+                                <div class="icon-container w-10 h-10 md:w-16 md:h-16 opacity-10">
                                     <svg viewBox="0 0 24 24" class="w-full h-full fill-none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-dasharray="4 4"></circle></svg>
                                 </div>
                                 <h3 class="serif item-title opacity-20">(準備中)</h3>
                                 <div class="card-btn coming-soon">期待</div>
                             </div>
                             <div class="card-box card-placeholder">
-                                <div class="w-4 h-4 md:w-16 md:h-16 opacity-10">
+                                <div class="icon-container w-10 h-10 md:w-16 md:h-16 opacity-10">
                                     <svg viewBox="0 0 24 24" class="w-full h-full fill-none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-dasharray="4 4"></circle></svg>
                                 </div>
                                 <h3 class="serif item-title opacity-20">(準備中)</h3>
                                 <div class="card-btn coming-soon">期待</div>
                             </div>
                             <div class="card-box card-placeholder">
-                                <div class="w-4 h-4 md:w-16 md:h-16 opacity-10">
+                                <div class="icon-container w-10 h-10 md:w-16 md:h-16 opacity-10">
                                     <svg viewBox="0 0 24 24" class="w-full h-full fill-none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-dasharray="4 4"></circle></svg>
                                 </div>
                                 <h3 class="serif item-title opacity-20">(準備中)</h3>
                                 <div class="card-btn coming-soon">期待</div>
                             </div>
                             <div class="card-box card-placeholder">
-                                <div class="w-4 h-4 md:w-16 md:h-16 opacity-10">
+                                <div class="icon-container w-10 h-10 md:w-16 md:h-16 opacity-10">
                                     <svg viewBox="0 0 24 24" class="w-full h-full fill-none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-dasharray="4 4"></circle></svg>
                                 </div>
                                 <h3 class="serif item-title opacity-20">(準備中)</h3>
